@@ -1,0 +1,10 @@
+<odoo>
+	<data noupdate="0">
+		<menuitem
+        id="crm_menu_products"
+        name="Products"
+        parent="crm.crm_menu_sales"
+        action="stock.product_template_action_product"
+        sequence="6"/>	
+	</data>
+</odoo>

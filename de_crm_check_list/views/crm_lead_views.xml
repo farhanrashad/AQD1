@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="crm_lead_view_form_inherit_checklist">
+        <field name="name">crm.lead.view.form.checklist</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <page name="extra" position="after">
+                 <page name="checkist" string="Checklist" attrs="{'invisible': [('type', '!=', 'opportunity')]}">
+                    <group>
+                        <group string="Checklist">
+                            <field name="crm_checklist_ids" widget="many2many_checkboxes"/>
+                        </group>
+                        <group string="Completed">
+                            <field name="checklist_progress" widget="percentpie"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="crm_case_tree_view_oppor_inherit">
+        <field name="name">crm.case.tree.view.oppor.inherit</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="inside">
+                <field name="type" invisible="1" />
+                <field name="checklist_progress" widget="progressbar" attrs="{'invisible': [('type', '!=', 'opportunity')]}" />
+            </xpath>
+            
+        </field>
+    </record>
+<!--
+    <record model="ir.ui.view" id="crm.crm_case_kanban_view_leads">
+        <field name="name">crm.crm_case_kanban_view_leads</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_case_kanban_view_leads"/>
+        <field name="arch" type="xml">
+            <xpath expr="//templates" position="before">
+                <field name="checklist_progress"/>
+                <field name="max_rate"/>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <li>
+                    <field name="checklist_progress" widget="gauge"
+                           options="{'max_field': 'max_rate',  'style': 'width:160px; height: 120px;'}">
+                    </field>
+                </li>
+            </xpath>
+        </field>
+    </record>
+-->
+</odoo>

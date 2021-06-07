@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_lead_score_type_manager,access.crm.lead.score.type.manager,model_crm_lead_score_type,sales_team.group_sale_manager,1,1,1,1
+access_crm_lead_score_user,access.crm.lead.score.user,model_crm_lead_score,sales_team.group_sale_salesman,1,1,1,1
+access_crm_lead_score_manager,access.crm.lead.score.manager,model_crm_lead_score,sales_team.group_sale_manager,1,1,1,1
+access_crm_lead_score_default_manager,access.crm.lead.score.default.manager,model_crm_lead_score_default,sales_team.group_sale_manager,1,1,1,1
+access_crm_lead_type_manager,access.crm.lead.type.manager,model_crm_lead_type,sales_team.group_sale_manager,1,1,1,1
+

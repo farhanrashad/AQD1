@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    
+    <record id="crm_lead_score_type_tree_view" model="ir.ui.view">
+		<field name="name">Lead Score Type</field>
+		<field name="model">crm.lead.score.type</field>
+		<field name="arch" type="xml">
+			<tree string="CRM Score Type">
+				<field name="name" />                                          
+			</tree>
+		</field>
+	</record>
+     
+	<record id="action_crm_lead_scroe_type_view" model="ir.actions.act_window">
+		<field name="name">Lead Score Type</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">crm.lead.score.type</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="o_view_nocontent_smiling_face">
+				Create lead score type
+			</p>
+		</field>
+	</record>
+
+	<menuitem
+        id="menu_crm_config_lead_score"
+        name="Lead Score"
+        parent="crm.crm_menu_config"
+        sequence="10"
+        groups="sales_team.group_sale_manager"/>
+    
+    <menuitem id="crm_lead_score_type" 
+              name="Score Type" 
+              parent="menu_crm_config_lead_score"
+              action="action_crm_lead_scroe_type_view" groups="sales_team.group_sale_manager"
+              sequence="1" />
+
+    <!-- Lead Default Score views -->
+    <record model="ir.ui.view" id="crm_lead_score_default_tree_view">
+            <field name="name">crm.lead.score.default.tree.view</field>
+            <field name="model">crm.lead.score.default</field>
+            <field name="arch" type="xml">
+                <tree string="Approvals" editable="bottom" sample="1">
+                    <field name="lead_score_type_id" string="Factor" options="{'no_create_edit':True, 'no_open': True}" width="6" />
+                    <field name="weightage" widget="percentage"/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="action_crm_lead_score_default_view" model="ir.actions.act_window">
+            <field name="name">Lead Default Score</field>
+            <field name="res_model">crm.lead.score.default</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Define lead default score
+              </p>
+              
+            </field>
+        </record>
+
+    <menuitem id="crm_lead_default_score" 
+              name="Default Score" 
+              parent="menu_crm_config_lead_score"
+              action="action_crm_lead_score_default_view" groups="sales_team.group_sale_manager"
+              sequence="2" />
+
+    
+</odoo> 

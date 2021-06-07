@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <odoo>
+     
+     
+      <record id="view_stock_picking_inhrt_two" model="ir.ui.view">
+        <field name="name">crm.lead.form</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            
+            <xpath expr="//header" position="inside">
+               	<field name="is_opportunity" invisible="1"/>
+            </xpath> 
+            
+             <xpath expr="//button[@name='164']" position="attributes">
+                <attribute name="attrs">
+                    {'invisible': ['|', ('is_opportunity', '=', False),('type', '!=', 'lead')]}
+                </attribute>
+            </xpath> 
+            
+        </field>
+    </record>
+    
+     
+      <record id="view_ercrm_lead_view_inhrt" model="ir.ui.view">
+		<field name="name">crm.lead.form</field>
+		<field name="model">crm.lead</field>
+		<field name="inherit_id" ref="crm.crm_lead_view_form" />
+		<field name="arch" type="xml">
+            
+            <xpath expr="//div[2]/h2/div[4]/div[2]" position="attributes">
+                <attribute name="invisible">1</attribute>
+			</xpath>
+            <xpath expr="//div[2]/h2/div[4]/div[1]/label" position="attributes">
+                <attribute name="invisible">1</attribute>
+			</xpath>
+            
+            
+            <xpath expr="//group" position="after">
+                <group attrs="{'invisible': [('type', '=', 'opportunity')]}">
+						<group>
+							<field name="excellent" />
+							<field name="good"/>
+							<field name="fair"/>
+                            <field name="unfair"/>
+                            <field name="bad"/>
+						</group>
+                        <group>
+							<field name="max_score"/>
+							<field name="min_score"/>
+                            <field name="total"/>
+							<field name="lead_type" />
+                            
+						</group>
+					</group>
+			</xpath>
+			<xpath expr="//notebook/page[@name = 'internal_notes']" position="before">
+                <page string="Lead Matrix"  attrs="{'invisible': [('type', '=', 'opportunity')]}">
+                    <field name="lead_scoring_ids">
+                        <tree create="false" delete="false" editable="true" >
+                            <field name="lead_score_type_id" string="Factor" options="{'no_create_edit':True, 'no_open': True}" width="6" />
+<!--                             <field name="weightage" widget="percentage"/> -->
+                            <field name="scale" width="6" options="{'horizontal': true}" />
+                        </tree>
+                    </field>
+                </page>
+			</xpath>
+            
+		</field>
+	</record>
+</odoo>
+

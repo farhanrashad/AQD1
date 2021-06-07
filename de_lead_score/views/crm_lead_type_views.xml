@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+        <record model="ir.ui.view" id="crm_lead_type_tree">
+            <field name="name">crm.lead.tree.view</field>
+            <field name="model">crm.lead.type</field>
+            <field name="arch" type="xml">
+                <tree string="Approvals" editable="bottom" sample="1">
+                    <field name="name" />
+                    <field name="value" widget="float"/>
+                    <field name="min_value" widget="float"/>
+                    <field name="max_value" widget="float"/>
+                    <field name="convert_opportunity" />
+                </tree>
+            </field>
+        </record>
+    
+        <record id="action_crm_lead_type_default_view" model="ir.actions.act_window">
+            <field name="name">Lead Type</field>
+            <field name="res_model">crm.lead.type</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Define lead default Types
+              </p>
+            </field>
+        </record>
+    
+    <menuitem id="crm_lead_type_menu" 
+            name="Lead Type" 
+            parent="menu_crm_config_lead_score"
+            action="action_crm_lead_type_default_view" 
+            groups="sales_team.group_sale_manager"
+            sequence="3"  />
+    
+</odoo> 
+
